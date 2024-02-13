@@ -1,0 +1,21 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1d232a;
+}
+
+html::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.4rem;
+}
+
+html::-webkit-scrollbar-track {
+    width: 0.5rem;
+    height: 90%;
+   
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #696868;
+  border-radius: 1rem;
+}
