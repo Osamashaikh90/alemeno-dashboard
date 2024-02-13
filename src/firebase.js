@@ -2,14 +2,16 @@
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import {getFirestore} from "firebase/firestore"
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAO-kWE5UgiNZX3pqtYN3dzKdpheNZxSYw",
-  authDomain: "coursewebsite-a0050.firebaseapp.com",
-  projectId: "coursewebsite-a0050",
-  storageBucket: "coursewebsite-a0050.appspot.com",
-  messagingSenderId: "120609703648",
-  appId: "1:120609703648:web:8b9fc69e7d6de92f623285",
-  measurementId: "G-V3ZJTJJJH3"
+  apiKey:`${import.meta.env.VITE_API_KEY}` ,
+  authDomain:`${import.meta.env.VITE_AUTH_DOMAIN }`,
+  projectId:`${import.meta.env.VITE_PROJECT_ID }`,
+  storageBucket:`${import.meta.env.VITE_STORAGE_BUCKET}` ,
+  messagingSenderId:`${import.meta.env.VITE_MESSAGING_SENDER_ID}` ,
+  appId:`${import.meta.env.VITE_APP_ID}` ,
+  measurementId:`${import.meta.env.VITE_MEASUREMENT_ID}` 
 };
 
 // Initialize Firebase
