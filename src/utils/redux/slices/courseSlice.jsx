@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { db } from "../../../firebase";
+import { getDocs,collection } from "firebase/firestore";
+
+const courseCollection = collection(db,'courses');
+const data = await getDocs(courseCollection);
+const filteredData = data.docs.map((doc)=>({...doc.data(),id:doc.id}));
 
 const courseSlice = createSlice({
 name:"course",
 initialState:{
-    allCourses:[],
+    allCourses:filteredData,
     filteredCourse:[],
     isGridView:true,
 },
 reducers:{
-    setAllCourses:(state,action)=>{
-    state.allCourses.push(action.payload);
-    },
     filterCourse:(state,action)=>{
     state.filteredCourse = state.allCourses?.filter((item)=>{
-    return item.name.includes(action.payload);
+    return item.name.toLowerCase().includes(action.payload.toLowerCase());
     })
     },
     set_ListView:(state)=>{
