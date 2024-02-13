@@ -2,21 +2,25 @@
 import Accordian from "../components/Accordian";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc,updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { FaRegHeart } from "react-icons/fa";
 import { useDispatch,useSelector } from "react-redux";
 import { buyCourse } from "../utils/redux/slices/dashBoardSlice";
 const SingleCourse = () => {
-  const [singleCourse, setSingleCourse] = useState(null);
-  const dispatch = useDispatch();
   const { id } = useParams();
+  const filterCourse = useSelector((store)=>store.course.filteredCourse);
+  const getCourse = filterCourse.find(item => item.id === id);
+  // console.log(getCourse.like);
+  const [singleCourse, setSingleCourse] = useState({});
+  const [like,setLike] = useState(getCourse.like)
+  const dispatch = useDispatch();
   const getSingleCourse = async () => {
     try {
       const courseRef = doc(db, "courses", id);
       const docs = await getDoc(courseRef);
       if (docs.exists()) {
         setSingleCourse(docs.data());
-        // console.log(singleCourse);
       } else {
         console.log("NO Docs");
       }
@@ -24,6 +28,16 @@ const SingleCourse = () => {
       console.log(error);
     }
   };
+// console.log(id);
+  const handleLikeClick = async()=>{
+  try {
+    const courseLiked = doc(db,"courses", id);
+  await updateDoc(courseLiked,{like:like+1});
+  setLike(like+1);
+  } catch (error) {
+    console.error('Error updating like count:', error);
+  }
+  }
 
   const course = useSelector((store)=>store.dashBoard.course);
   const isCoursetWithIdPresent = (idToCheck) => {
@@ -42,12 +56,15 @@ const SingleCourse = () => {
   }, [id]);
 
   return (
-    <div className="mb-10 mx-36">
+    <div className="mb-10 xl:mx-36 lg:mx-10 md:mx-5">
       <div className="grid grid-cols-2 gap-10 py-5">
-        <div className="flex flex-col justify-center gap-3">
-          <h1 className="font-serif text-4xl text-[#a6adba]">
+        <div className="flex flex-col justify-center gap-3 md:p-0 xxsm:px-5">
+          <span className="flex items-center justify-between"><h1 className="font-serif text-4xl text-[#a6adba]">
             {singleCourse?.name}🚀
+            
           </h1>
+          <button onClick={handleLikeClick}><FaRegHeart /></button>
+          </span>
           <span className="text-[#a6adba] ">
             🟠Location: {singleCourse?.location}
           </span>
@@ -142,10 +159,8 @@ const SingleCourse = () => {
           <span className="text-2xl text-[#a6adba]">Syllabus</span>
           <span className="h-1 rounded-full bg-blue-600 w-[10%]"></span>
         </div>
-        {/* <hr className="dark:border-t dark:border-[#676666aa] my-2" /> */}
         <Accordian singleCourse={singleCourse} />
       </div>
-      {/* //accordion */}
     </div>
   );
 };
