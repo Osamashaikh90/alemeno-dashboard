@@ -13,6 +13,7 @@ const Header = () => {
 
   return (
     <>
+    <div>
       <div  className="sticky top-0 z-50 flex items-center justify-between my-3 rounded-md shadow-sm shadow-[#edae2f4d] xxsm:px-5 md:px-2 md:py-2 md:mx-4 bg-[#181e24]">
         <Link to="/"><h1 className="inline-block text-3xl font-medium text-[#edae2f] cursor-pointer font-Cursive hover:transform hover:scale-100 xxsm:flex xxsm:items-center xxsm:justify-center md:justify-start md:mx-5 ">
           CourseWallah
@@ -22,6 +23,7 @@ const Header = () => {
         <span><img src={user} alt="" className='h-9 w-9 '/></span>
        </div>
           {/* <FiShoppingCart className="pr-2 text-5xl " /> */}
+      </div>
       </div>
     </>
   );

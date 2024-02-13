@@ -4,12 +4,12 @@ import Courses from './Courses'
 
 const CourseContainer = () => {
   return (
-    <div className=" mx-36">
+    <div className="xxsm:mx-10 lg:mx-36">
     <section>
     <div className="sort-filter">
             <Sort />
           </div>
-          <div className="main-product">
+          <div className="Courses">
            
       <Courses />
           </div>
@@ -18,4 +18,4 @@ const CourseContainer = () => {
   )
 }
 
-export default CourseContainer
+export default CourseContainer
