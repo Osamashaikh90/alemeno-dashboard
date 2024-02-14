@@ -7,11 +7,16 @@ import user from "../assets/osama shaikh.png"
 import { useSelector } from "react-redux";
 import ProgressBar from "../components/ProgressBar";
 import { DateFormatter } from "../utils/helper/DateFormatter";
+import { useNavigate } from "react-router-dom";
 const StudentDashboard = () => {
   const course = useSelector((store)=>store.dashBoard.course);
   const [completionStatus, setCompletionStatus] = useState({});
-const allCourse = useSelector((store)=>store.course.allCourse);
-console.log(allCourse)
+  const navigate = useNavigate();
+function handleClearLocalStorage() {
+  localStorage.clear();
+  navigate('/')
+  console.log("Local storage cleared successfully.");
+}
   const handleCompleteCourse = (courseId) => {
     setCompletionStatus((prevStatus) => ({
       ...prevStatus,
@@ -36,7 +41,8 @@ console.log(allCourse)
   </div>
   <div className="flex flex-col gap-3 px-5 mb-2">
   <Link to="/">  <span className="flex items-center gap-4 font-mono  cursor-pointer hover:bg-[#86682e] hover:rounded-lg p-1 sm:text-md lg: text-xl"><PiStorefront className="text-3xl"/> <span className="hidden md:block">Store</span></span></Link>
-    <span className="flex items-center gap-4 font-mono text-xl cursor-pointer"><img src={user} alt="" className='w-7 h-7 '/><span className="hidden md:block">Sign Out</span></span>
+    <span className="flex items-center gap-4 font-mono text-xl cursor-pointer"><img src={user} alt="" className='w-7 h-7 '/><button className="hidden md:block" onClick={handleClearLocalStorage}>Sign OUt</button></span>
+    {/* <span className="flex items-center gap-4 font-mono text-xl cursor-pointer"><img src={user} alt="" className='w-7 h-7 '/><span className="hidden md:block">Sign Out</span></span> */}
   </div>
  
    </div>

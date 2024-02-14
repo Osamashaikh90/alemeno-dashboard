@@ -57,7 +57,7 @@ const SingleCourse = () => {
 
   return (
     <div className="mb-10 xl:mx-36 lg:mx-10 md:mx-5">
-      <div className="grid grid-cols-2 gap-10 py-5">
+      <div className="grid gap-10 py-5 md:grid-cols-2 xxsm:grid-cols-1">
         <div className="flex flex-col justify-center gap-3 md:p-0 xxsm:px-5">
           <span className="flex items-center justify-between"><h1 className="font-serif text-4xl text-[#a6adba]">
             {singleCourse?.name}🚀
@@ -151,7 +151,7 @@ const SingleCourse = () => {
           <span className="text-2xl text-[#a6adba]">Description</span>
           <span className="h-1 rounded-full bg-blue-600 w-[10%]"></span>
         </div>
-        <p className="px-16">{singleCourse?.description}</p>
+        <p className="md:px-16 xxsm:px-5">{singleCourse?.description}</p>
       </div>
       <div className="flex flex-col gap-3 mt-5 ">
         <div className="flex items-center justify-center gap-2">
@@ -166,3 +166,4 @@ const SingleCourse = () => {
 };
 
 export default SingleCourse;
+
